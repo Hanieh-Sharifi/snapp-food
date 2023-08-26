@@ -1,6 +1,13 @@
 import React from "react";
 
-import { transformDescription } from "../../utils";
+import Star from "../Star";
+
+import {
+  transformDescription,
+  translateEnglishDigitsToPersian,
+  getRateColor,
+  getBackgroundColor,
+} from "../../utils";
 
 import "./Card.scss";
 
@@ -19,6 +26,7 @@ function Card({
           className="card__background-image"
           src={backgroundImage}
           alt={title}
+          height="124"
         />
         <div className="card__logo-container">
           <img className="card__logo" src={logo} alt={title} />
@@ -27,14 +35,25 @@ function Card({
       <div className="card__text-container">
         <div className="card__top-container">
           <div className="card__title">{title}</div>
-          <div className="card__rate">{rate}</div>
+          <div
+            className="card__rate"
+            style={{
+              color: getRateColor(rate),
+              backgroundColor: getBackgroundColor(rate),
+            }}
+          >
+            <span>{translateEnglishDigitsToPersian(rate)}</span>
+            <Star />
+          </div>
         </div>
         <div className="card__description">
           {transformDescription(description)}
         </div>
         <div className="card__bottom-container">
           <div className="card__delivery-type">ارسال اکسپرس</div>
-          <div className="card__delivery-price">{deliveryFee} تومان</div>
+          <div className="card__delivery-price">
+            {translateEnglishDigitsToPersian(deliveryFee)} تومان
+          </div>
         </div>
       </div>
     </div>

@@ -85,4 +85,14 @@
     font-weight: 400;
     color: #a3a3a3;
   }
+
+  &__rate {
+    display: flex;
+    flex-direction: row;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 400;
+    align-items: center;
+    text-align: center;
+  }
 }

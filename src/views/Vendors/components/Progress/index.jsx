@@ -4,7 +4,7 @@ import "./Progress.scss";
 
 function Progress() {
   return (
-    <div class="lds-ring">
+    <div className="lds-ring">
       <div></div>
       <div></div>
       <div></div>
