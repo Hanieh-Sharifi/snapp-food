@@ -13,7 +13,7 @@ function HomePage() {
   }
 
   return (
-    <button type="button" class="home-page__button" onClick={handleButtonClick}>
+    <button type="button" className="home-page__button" onClick={handleButtonClick}>
       HomePage
     </button>
   );

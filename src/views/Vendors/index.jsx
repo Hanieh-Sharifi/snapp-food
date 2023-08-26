@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
+
+import { getVendorsList } from "./request";
 
 function Vendors() {
-  return (
-    <div>Vendors</div>
-  )
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    getVendorsList();
+  }, []);
+  return <div>Vendors</div>;
 }
 
 export default Vendors;
