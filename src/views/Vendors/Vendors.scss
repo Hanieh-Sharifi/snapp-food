@@ -1,4 +1,26 @@
 .vendors {
   display: flex;
   flex-direction: column;
+
+  &__pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &__pagination-button {
+    cursor: pointer;
+    width: 20%;
+    padding: 16px 0;
+    background-color: #ff00a4;
+    color: white;
+    border: 0;
+    border-radius: 4px;
+    font-size: 17px;
+
+    &:disabled {
+      cursor: default;
+      background-color: #ff00a642;
+    }
+  }
 }
