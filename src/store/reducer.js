@@ -3,13 +3,16 @@ import axios from "axios";
 
 const initialState = { isLoading: false, vendors: [] };
 
-export const getVendors = createAsyncThunk("content/getVendors", async () => {
-  const res = await axios(
-    "https://snappfood.ir/mobile/v3/restaurant/vendors-list?page=0&page_size=10&lat=35.754&long=51.328"
-  );
-  const data = await res.data;
-  return data;
-});
+export const getVendors = createAsyncThunk(
+  "content/getVendors",
+  async (page) => {
+    const res = await axios(
+      `https://snappfood.ir/mobile/v3/restaurant/vendors-list?page=${page}&page_size=10&lat=35.754&long=51.328`
+    );
+    const data = await res.data;
+    return data;
+  }
+);
 
 const vendors = createSlice({
   name: "vendors",
@@ -20,7 +23,7 @@ const vendors = createSlice({
     });
     builder.addCase(getVendors.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.contents = action.payload;
+      state.vendors = action.payload.data.finalResult;
     });
     builder.addCase(getVendors.rejected, (state, action) => {
       state.isLoading = false;
