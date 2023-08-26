@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import { getVendors } from "../../store/reducer";
 
 import Progress from "./components/Progress";
 import Card from "./components/Card";
 
-import { getVendorsList } from "./request";
-
 import "./Vendors.scss";
 
 function Vendors() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState([]);
+  const dispatch = useDispatch();
+  const contents = useSelector((state) => state.contents);
+  const isLoading = useSelector((state) => state.isLoading);
+  const error = useSelector((state) => state.error);
 
   useEffect(() => {
-    getVendorsList()
-      .then((data) => {
-        setData(data);
-      })
-      .catch(() => setHasError(true))
-      .finally(setIsLoading(false));
+    dispatch(getVendors());
   }, []);
 
   return (
     <div className="vendors">
       {isLoading && <Progress />}
-      {data?.map((widget) => {
+      {contents?.data.finalResult?.map((widget) => {
         if (widget.type === "TEXT") {
           return;
         }
@@ -44,6 +42,7 @@ function Vendors() {
           />
         );
       })}
+      {error && <div>fetch error</div>}
     </div>
   );
 }
