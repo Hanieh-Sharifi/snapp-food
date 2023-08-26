@@ -35,7 +35,12 @@ module.exports = {
   resolve: {
     extensions: ["*", ".js", ".jsx"],
   },
-  plugins: [new HtmlWebpackPlugin({ template: "./public/index.html", filename: './index.html' })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+      filename: "./index.html",
+    }),
+  ],
   devServer: {
     static: path.resolve(__dirname, "./dist"),
     hot: true,
